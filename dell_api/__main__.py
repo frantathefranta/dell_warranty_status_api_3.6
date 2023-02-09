@@ -13,6 +13,10 @@ from getpass import getpass
 from humanize import precisedelta
 from loguru import logger
 import pretty_errors
+from typing import List
+# from backports-datetime-fromisoformat import MonkeyPatch
+#
+# MonkeyPatch.patch_fromisoformat()
 
 pretty_errors.configure(
     line_number_first=True,
@@ -105,7 +109,8 @@ class DellApi:
             logger.debug('The access token has just received and saved to cache')
 
     def _is_token_valid(self, iso_date_string: str) -> bool:
-        when_generated = datetime.datetime.fromisoformat(iso_date_string)
+        # when_generated = datetime.datetime.fromisoformat(iso_date_string)
+        when_generated = datetime.datetime.strptime(iso_date_string, '%Y-%m-%dT%H:%M:%S.%f') #Changed from line above due to no support for fromisoformat() in 3.6
         now = datetime.datetime.now()
         diff_seconds = (now - when_generated).seconds
         logger.debug('Token valid for one hour, created at -> {}', when_generated)
@@ -131,7 +136,7 @@ class DellApi:
             self._generate_access_token()
             return self._load_access_token()['access_token']
 
-    def asset_warranty(self, service_tags: list) -> list[dict]:
+    def asset_warranty(self, service_tags: list) -> List[dict]: #Had to change to List due to 3.6
         if len(service_tags) > 99:
             raise TooManyServiceTags(f"Expected less then 100, got {len(service_tags)}")
         else:
@@ -228,7 +233,7 @@ class DellApi:
         elif (True not in pro_plus) and (True not in pro):
             return b
 
-    def _warranty_handler(self, resp: list) -> list[dict]:
+    def _warranty_handler(self, resp: list) -> List[dict]: #Had to change to List due to 3.6
         logger.debug('data into handler: {}', resp)
         data = []  # ServiceTag, Region, Warranty, Elapsed, EndDate
 
