@@ -12,11 +12,9 @@ From Dell API Outh doc - ***API key = Client ID***
 This data is used for receiving an access token for the Resource (API)
 
 # Installation 
-`pip install dell-warranty-api`
-
-OR you can install the application manually. Example with virtual environment:
+You can install the application manually. Example with virtual environment:
 ```
-https://github.com/karma-git/dell_warranty_status_api.git && cd dell_warranty_status_api;
+git clone https://github.com/frantathefranta/dell_warranty_status_api_3.6 && cd dell_warranty_status_api;
 python3 -m venv venv;
 source venv/bin/activate;
 python -m pip install -r requirements.txt;
