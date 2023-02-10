@@ -45,7 +45,7 @@ $ dell_api -w 1234567,2345678,3456789
 |   1234567   | United States | ProSupport | 4 years, 2 months and 0 days | 2025-07-10 |
 +-------------+---------------+------------+------------------------------+------------+
 ```
-Check more usage cases -> [examples](https://github.com/karma-git/dell_warranty_status_api/blob/master/EXAMPLES.md)
+Check more usage cases -> [examples](https://github.com/frantathefranta/dell_warranty_status_api_3.6/blob/master/EXAMPLES.md)
 
 
                                                                 
